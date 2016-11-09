@@ -5,6 +5,10 @@
  */
 package com.it355.caosvete;
 
+<<<<<<< HEAD
+import com.it355.logging.Logging;
+=======
+>>>>>>> 68967bb36f2a94922f769a4c93fdfd1c5801fa37
 import com.it355.model.AutoDeo;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,11 @@ public class AutoDeoController {
     
     @Autowired
     private MessageSource ms;
+<<<<<<< HEAD
+    @Autowired
+    private Logging log;
+=======
+>>>>>>> 68967bb36f2a94922f769a4c93fdfd1c5801fa37
      @RequestMapping(value = "/deo" , method  // /deo-> prikaz na browser-u
             = RequestMethod.GET)
     public String autodeo(ModelMap map) {
@@ -34,7 +43,12 @@ public class AutoDeoController {
         ms.getMessage("name", null, Locale.ENGLISH);
         map.addAttribute("autodeo", new AutoDeo());
         
+<<<<<<< HEAD
+        log.logg();
+        log.logout();
+=======
         
+>>>>>>> 68967bb36f2a94922f769a4c93fdfd1c5801fa37
        
         return "autodeo"; //jsp fajl
     }

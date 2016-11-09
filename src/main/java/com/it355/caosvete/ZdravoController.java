@@ -23,6 +23,14 @@ public class ZdravoController {
         model.addAttribute("poruka", "IT355 Domaći1");
         return "pozdrav";
     }
+<<<<<<< HEAD
     
    
+=======
+<<<<<<< HEAD
+    
+   
+=======
+>>>>>>> 11c17586399d54c7dd17c5b8faa61bffc94dc2a0
+>>>>>>> 68967bb36f2a94922f769a4c93fdfd1c5801fa37
 }
