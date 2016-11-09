@@ -23,4 +23,6 @@ public class ZdravoController {
         model.addAttribute("poruka", "IT355 Domaći1");
         return "pozdrav";
     }
+    
+   
 }
