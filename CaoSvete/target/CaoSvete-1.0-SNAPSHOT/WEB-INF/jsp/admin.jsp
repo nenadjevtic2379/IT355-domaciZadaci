@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <body>
+    
 	<h1>Title : ${title}</h1>
 	<h1>Message : ${message}</h1>
 
