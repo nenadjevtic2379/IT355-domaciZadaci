@@ -44,7 +44,12 @@
             
             
             .form {
-                max-width: 650px;
+                max-width: 750px;
+            }
+            
+            .glyphicon {
+                
+               padding-left: 20px;
             }
             
             .table-condensed{   
@@ -104,16 +109,16 @@
                     <div class="collapse navbar-collapse nav-collapse">
                         <div class="menu-container">
                             <ul class="navbar-nav navbar-nav-right">
-                                <!--       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./index/">Home</a></li>
-                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
+                                  <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./">Početna</a></li>
+                                 <!--        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./about/">About</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./faq/">FAQ</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./contact/">Contact</a></li> -->
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./proizvodi">Proizvodi</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./tipovi">Tipovi</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./sviTipoviHib">Tipovi</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./add">Dodaj proizvod</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
 
                             </ul>
@@ -151,19 +156,23 @@
                         <th>Za auto:</th>
                         <th>Cena:</th>
                         <th>Proizvodnja:</th>
+                        <th>Obriši:</th>
+                        <th>Izmeni:</th>
                     </tr>
                     
                 </thead>
-                <c:forEach items="${proizvodiLista}" var="proizvodiLista">
+                <c:forEach items="${proizvodiLista}" var="proizvodi">
                 <tbody>
                     <tr>
 		
-                        <td>${proizvodiLista.id}</td>
-			<td>${proizvodiLista.TIP}</td> 
-			<td>${proizvodiLista.vrsta}</td>
-                        <td>${proizvodiLista.zaauto}</td>
-                        <td>${proizvodiLista.cena}</td>
-                        <td>${proizvodiLista.proizvodnja}</td>
+                        <td>${proizvodi.id_proizvod}</td>
+			<td>${proizvodi.tip.naziv}</td> 
+			<td>${proizvodi.vrsta}</td>
+                        <td>${proizvodi.zaauto}</td>
+                        <td>${proizvodi.cena}</td>
+                        <td>${proizvodi.proizvodnja}</td>
+                        <td><a href="<c:url value='/obrisiproizvod/${proizvodi.id_proizvod}' />"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <td><a href="<c:url value='/editproizvod/${proizvodi.id_proizvod}' />"><span class="glyphicon glyphicon-edit"></span></a></td>
 			<td>
 			</td>
 		</tr>

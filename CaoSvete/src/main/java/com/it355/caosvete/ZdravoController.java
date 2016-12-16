@@ -54,18 +54,18 @@ public class ZdravoController {
     
     @Autowired
     ListaDAO listaDao;
-    
+       
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
     public ModelAndView defaultPage() {
 
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
-        model.addObject("message", "This is default page!");
-        model.setViewName("hello");
+     //   model.addObject("title", "Spring Security Login Form - Database Authentication");
+    //    model.addObject("message", "This is default page!");
+        model.setViewName("index");
         return model;
 
     }
-
+ 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
 
@@ -125,12 +125,12 @@ public class ZdravoController {
 	    	model.addObject("object", p);
                 p.setId(tipDao.getCount() + 1);
                 tipProizvodaService.addTip(p);
-                model.setViewName("dodajtipproizvoda"); 
+               
 		return model;
                 
 	}
         
-        @RequestMapping(value="/tipovi", method=RequestMethod.GET)
+    /*    @RequestMapping(value="/tipovi", method=RequestMethod.GET)
 	public ModelAndView tipovi(ModelAndView modelAndView) {
 		List<tipProizvoda> subjects= tipDao.getAllTips();
                 for (tipProizvoda subject : subjects) {
@@ -140,9 +140,9 @@ public class ZdravoController {
 		modelAndView.setViewName("svitipovi");
 		
             return modelAndView;
-	}
+	}  */
         
-       @RequestMapping(value = "/add", method = RequestMethod.GET)
+    /*   @RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addProizvod() {
             
                 ModelAndView m = new ModelAndView();
@@ -169,9 +169,9 @@ public class ZdravoController {
                
 		return model;
                 
-	}
+	}*/
         
-         @RequestMapping(value="/proizvodi", method=RequestMethod.GET)
+     /*    @RequestMapping(value="/proizvodi", method=RequestMethod.GET)
 	public ModelAndView getAllProizvodi(ModelAndView modelAndView) {
 		List<ListaProizvoda> subjects= listaDao.getAllProizvod();
                 for (ListaProizvoda subject : subjects) {
@@ -183,5 +183,5 @@ public class ZdravoController {
             return modelAndView;
 	}
         
-        
+    */
 }

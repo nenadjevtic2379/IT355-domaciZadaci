@@ -1,4 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,6 +45,12 @@
 
             .form {
                 max-width: 300px;
+            }
+            
+            .glyphicon {
+              
+                padding-left: 20px;
+               
             }
 
             .table-condensed{   
@@ -101,16 +108,16 @@
                     <div class="collapse navbar-collapse nav-collapse">
                         <div class="menu-container">
                             <ul class="navbar-nav navbar-nav-right">
-                                <!--       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./index/">Home</a></li>
-                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
+                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./">Početna</a></li>
+                                   <!--    <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./about/">About</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./faq/">FAQ</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./contact/">Contact</a></li> -->
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./proizvodi">Proizvodi</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./tipovi">Tipovi</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./sviTipoviHib">Tipovi</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./add">Dodaj proizvod</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
 
                             </ul>
@@ -143,16 +150,17 @@
                         <tr>
                             <th>ID:</th>
                             <th>Naziv:</th>
+                            <th>Obriši:</th>
                         </tr>
 
                     </thead>
-                    <c:forEach items="${tipoviLista}" var="tipoviLista">
+                    <c:forEach items="${tipoviLista}" var="tip">
                         <tbody>
                             <tr>
 
-                                <td>${tipoviLista.id}</td> 
-                                <td>${tipoviLista.naziv}</td>
-                                
+                                <td>${tip.id}</td> 
+                                <td>${tip.naziv}</td>
+                                <td><a href="<c:url value='/obrisitip/${tip.id}' />"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 <td>
                                 </td>
                             </tr>
