@@ -2,14 +2,17 @@ com\it355\model\Proizvod.class
 com\it355\DAO\impl\ListaDAOImpl.class
 com\it355\service\impl\TipProizvodaServiceImpl.class
 com\it355\mapper\tipProizvodaMapper.class
+com\it355\hibernate\entity\Forum.class
 com\it355\service\TipProizvodaService.class
 com\it355\hibernate\impl\HibernateDAOImpl.class
 com\it355\caosvete\ZdravoController.class
 com\it355\DAO\ListaDAO.class
 com\it355\DAO\impl\ProizvodDAOImpl.class
+com\it355\converter\IntegerToCategory\IntegerToCategory.class
 com\it355\service\impl\ListaServiceImpl.class
 com\it355\service\ProizvodService.class
 com\it355\DAO\ProizvodDAO.class
+com\it355\hibernate\entity\Proizvodi.class
 com\it355\model\tipProizvoda.class
 com\it355\model\ListaProizvoda.class
 com\it355\hibernate\DAO\HibernateDAO.class
@@ -17,6 +20,7 @@ com\it355\DAO\impl\TipDAOImpl.class
 com\it355\service\ListaService.class
 com\it355\hibernate\entity\ProizvodiTip.class
 com\it355\mapper\ProizvodMapper.class
+com\it355\hibernate\entity\Kontakt.class
 com\it355\DAO\TipDAO.class
 com\it355\caosvete\HibernateController.class
 com\it355\mapper\ListaMapper.class

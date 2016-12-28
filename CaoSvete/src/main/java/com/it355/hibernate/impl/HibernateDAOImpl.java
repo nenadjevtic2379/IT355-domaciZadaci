@@ -6,8 +6,13 @@
 package com.it355.hibernate.impl;
 
 import com.it355.hibernate.DAO.HibernateDAO;
+import com.it355.hibernate.entity.Forum;
+import com.it355.hibernate.entity.Kontakt;
+import com.it355.hibernate.entity.Odgovori;
 import com.it355.hibernate.entity.Proizvodi;
 import com.it355.hibernate.entity.ProizvodiTip;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -78,7 +83,8 @@ public class HibernateDAOImpl implements HibernateDAO {
     @Override
     @Transactional
     public Proizvodi getProizvodById(int id) {
-        Proizvodi p = (Proizvodi) getSession().createCriteria(Proizvodi.class).add(Restrictions.eq("id", id)).uniqueResult();
+        Proizvodi p = (Proizvodi) getSession().createCriteria(Proizvodi.class)
+                .add(Restrictions.eq("id", id)).uniqueResult();
         
         return p;
     }
@@ -100,8 +106,60 @@ public class HibernateDAOImpl implements HibernateDAO {
     public void editProizvod(Proizvodi proizvodi) {
         getSession().saveOrUpdate(proizvodi);
     }
+
+    @Override
+    @Transactional
+    public Kontakt dodajKontakt(Kontakt k) {
+          return (Kontakt)getSession().merge(k);
+    }
+
+    @Override
+    @Transactional
+    public Forum dodajKomentar(Forum f) {
+        return (Forum) getSession().merge(f);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Transactional
+    public List<Forum> getKomentari() {
+        List<Forum> komentari = (List<Forum>) getSession().createCriteria(Forum.class).list();
+        
+        return komentari;
+    }
+
+    @Override
+    @Transactional
+    public Forum getKomentarById(Integer id) {
+      
+            Forum f = (Forum) getSession().createCriteria(Forum.class).add(Restrictions.eq("id", id)).uniqueResult();
+        
+        return f;
+    }
+
+    @Override
+    @Transactional
+    public void odgovoriNaKomentar(Forum forum) {
+        getSession().saveOrUpdate(forum);
+    }
+
     
-    
-    
+    @Override
+    @Transactional
+    public Odgovori addOdgovor(Odgovori o) {
+        
+       
+         return (Odgovori) getSession().merge(o);
+    }
+
+    @Override
+    @Transactional
+    public List<Odgovori> getOdgovori() {
+        
+        
+        List<Odgovori> odgovori = (List<Odgovori>) getSession().createCriteria(Odgovori.class).list();
+        
+        return odgovori;
+    }
     
 }

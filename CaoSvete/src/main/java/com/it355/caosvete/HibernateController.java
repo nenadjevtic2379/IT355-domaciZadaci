@@ -11,15 +11,25 @@ package com.it355.caosvete;
  */
 import com.it355.hibernate.entity.ProizvodiTip;
 import com.it355.hibernate.DAO.HibernateDAO;
+import com.it355.hibernate.entity.Forum;
+import com.it355.hibernate.entity.Kontakt;
+import com.it355.hibernate.entity.Odgovori;
 import com.it355.hibernate.entity.Proizvodi;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -111,4 +121,82 @@ public class HibernateController {
     }
 
 
+    @RequestMapping(value = {"/","/welcome"}, method = RequestMethod.GET)
+    public String addKontakt(Model model) {
+        model.addAttribute("kontakt", new Kontakt());
+        
+        
+        return "index";
+    }
+    
+    @RequestMapping(value = {"/","/welcome"}, method = RequestMethod.POST)
+    public ModelAndView addKontakt(@ModelAttribute("kontakt") Kontakt p, ModelAndView model) {
+        
+        p = hibernateDAO.dodajKontakt(p);
+     //   model.addObject("tip", hibernateDAO.getCategories());
+     //   model.addObject("successMsg", "Proizvod uspešno dodat");
+        model.addObject("kontakt",p);
+        
+        model.setViewName("index");
+        return model;
+    }
+    
+  
+    @RequestMapping(value = "/forum", method = RequestMethod.GET)
+    public String addComment(Model model) {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addAttribute("username", userDetail.getUsername());
+        }
+        model.addAttribute("komentariLista", hibernateDAO.getKomentari());
+        model.addAttribute("odgovoriLista", hibernateDAO.getOdgovori());
+        model.addAttribute("kom" , new Odgovori());
+        model.addAttribute("forum" , new Forum());
+       
+        
+        return "forum";
+    }
+    
+    @RequestMapping(value = "/forum", method = RequestMethod.POST)
+    public ModelAndView addComment(@ModelAttribute("forum") Forum p, ModelAndView model) {
+        
+        p = hibernateDAO.dodajKomentar(p);
+ 
+        model.addObject("forum",p);
+        model.setViewName("forum");
+        return model;
+    }
+    
+    @RequestMapping(value = "/odgovoriNaKomentar/{id}", method = RequestMethod.GET)
+    public String addReply(@PathVariable("id") int id, Model model) {
+         Forum produc = hibernateDAO.getKomentarById(id);
+         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addAttribute("username", userDetail.getUsername());
+           
+        }
+      
+        
+        model.addAttribute("forum",produc);
+      //  model.addAttribute("tip", hibernateDAO.getCategories());
+        
+        return "odgovori";
+    }
+    
+    @RequestMapping(value = "/odgovoriNaKomentar/{id}", method = RequestMethod.POST)
+     public ModelAndView addReply(@ModelAttribute("forum") Odgovori p, ModelAndView model) {
+         
+         p = hibernateDAO.addOdgovor(p);
+         
+       
+      
+         model.addObject("forum" , p);
+        
+       model.setViewName("odgovori");
+        return model;
+    }
+    
 }

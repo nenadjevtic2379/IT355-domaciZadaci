@@ -55,7 +55,7 @@ public class ZdravoController {
     @Autowired
     ListaDAO listaDao;
        
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+	/*@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
     public ModelAndView defaultPage() {
 
         ModelAndView model = new ModelAndView();
@@ -64,7 +64,7 @@ public class ZdravoController {
         model.setViewName("index");
         return model;
 
-    }
+    }*/
  
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -90,7 +90,7 @@ public class ZdravoController {
             model.addObject("msg", "You've been logged out successfully.");
         }
         model.setViewName("login");
-
+        
         return model;
 
     }
@@ -129,7 +129,7 @@ public class ZdravoController {
 		return model;
                 
 	}
-        
+           
     /*    @RequestMapping(value="/tipovi", method=RequestMethod.GET)
 	public ModelAndView tipovi(ModelAndView modelAndView) {
 		List<tipProizvoda> subjects= tipDao.getAllTips();

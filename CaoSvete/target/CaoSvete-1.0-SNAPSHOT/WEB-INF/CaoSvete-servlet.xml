@@ -65,6 +65,7 @@
         <property name="converters">
             <set>
                 <bean class="com.it355.converter.IntegerToCategory.IntegerToCategory" />
+                <bean class="com.it355.converter.IntegerToCategory.IntegerToComment" />
             </set>
         </property>
     </bean>

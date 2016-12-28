@@ -76,6 +76,7 @@
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./sviTipoviHib">Tipovi</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./forum">Forum</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
                             </ul>
                         </div>
@@ -534,9 +535,13 @@
         <!--========== FOOTER ==========-->
         <footer class="footer">
             <!-- Links -->
+            
             <div class="footer-seperator">
+                
                 <div class="content-lg container">
+                   
                     <div class="row">
+                        
                         <div class="col-sm-2 sm-margin-b-50">
                             <!-- List -->
                             <ul class="list-unstyled footer-list">
@@ -547,7 +552,6 @@
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Clients</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Careers</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Contact</a></li>
-								<li class="footer-list-item"><a class="footer-list-link" href="#">LogIn</a></li>
                                 <li class="footer-list-item"><a class="footer-list-link" href="#">Terms</a></li>
                             </ul>
                             <!-- End List -->
@@ -562,28 +566,42 @@
                             </ul>
                             <!-- End List -->
                         </div>
+                        
+                        
                         <div class="col-sm-5 sm-margin-b-30">
-                            <h2 class="color-white">Send Us A Note</h2>
-                            <input type="text" class="form-control footer-input margin-b-20" placeholder="Name" required>
-                            <input type="email" class="form-control footer-input margin-b-20" placeholder="Email" required>
-                            <input type="text" class="form-control footer-input margin-b-20" placeholder="Phone" required>
-                            <textarea class="form-control footer-input margin-b-30" rows="6" placeholder="Message" required></textarea>
-                            <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase">Submit</button>
+                            
+                       <form:form onsubmit="setTimeout(function () { window.location.reload(); }, 30)" method="POST"  modelAttribute="kontakt">
+                            <h2 class="color-white">Imate problem ili pitanje?</h2>
+                            <p>Kontaktirajte naš admin tim i očekujte odgovor ili poziv od nas</p>
+                            <p>u najkraćem mogućem roku</p>
+                            
+                            <form:input id="ime" path="ime" type="text" class="form-control footer-input margin-b-20" placeholder="Ime i prezime" />
+                            <form:input id="email" path="email" type="email" class="form-control footer-input margin-b-20" placeholder="Email" />
+                            <form:input id="telefon" path="telefon" type="text" class="form-control footer-input margin-b-20" placeholder="Telefon" />
+                                <form:textarea type="text" id="poruka" path="poruka" class="form-control footer-input margin-b-30" rows="6" placeholder="Poruka"/>
+                           
+                                
+                               <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase">Pošalji</button>
+                       </form:form>
                         </div>
+                            
                     </div>
                     <!--// end row -->
+                    
                 </div>
+                             
             </div>
+                           
             <!-- End Links -->
 
             <!-- Copyright -->
             <div class="content container">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img class="footer-logo" src="<c:url value="/resources/img/logo.png" />"alt="Asentus Logo">
+                        <img class="footer-logo" src="<c:url value="/resources/img/logo.png"/>" alt="Asentus Logo">
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="margin-b-0"><a class="color-base fweight-700" href="<c:url value="/resources/http://keenthemes.com/preview/asentus/" />">Asentus</a> Theme Powered by: <a class="color-base fweight-700" href="http://www.keenthemes.com/">KeenThemes.com</a></p>
+                        <p class="margin-b-0"><a class="color-base fweight-700" href="http://keenthemes.com/preview/asentus/">Asentus</a> Theme Powered by: <a class="color-base fweight-700" href="http://www.keenthemes.com/">KeenThemes.com</a></p>
                     </div>
                 </div>
                 <!--// end row -->

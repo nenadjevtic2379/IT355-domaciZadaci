@@ -118,6 +118,7 @@
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./sviTipoviHib">Tipovi</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./forum">Forum</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
 
                             </ul>
