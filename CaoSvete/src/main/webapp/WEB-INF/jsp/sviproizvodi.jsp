@@ -42,10 +42,17 @@
         <style>
             
             
-            
+            <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
             .form {
-                max-width: 750px;
+                max-width: 770px;
             }
+            </c:if>
+            
+            <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+            .form {
+                max-width: 700px;
+            }
+            </c:if>
             
             .glyphicon {
                 
@@ -115,12 +122,27 @@
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./faq/">FAQ</a></li>
                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./contact/">Contact</a></li> -->
+                              <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./proizvodi">Proizvodi</a></li>
+                                 </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./sviTipoviHib">Tipovi</a></li>
+                                
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./forum">Forum</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./allnarudzbine">Narudžbine</a></li>
+                                </c:if>
+                                
+                                <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./mojakorpa"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                                </c:if>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./reg"><span class="glyphicon glyphicon-user"></span></a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover " href="./login"><span class="glyphicon glyphicon-log-in"></span></a></li>
 
                             </ul>
                         </div>
@@ -157,9 +179,14 @@
                         <th>Za auto:</th>
                         <th>Cena:</th>
                         <th>Proizvodnja:</th>
+                       <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                         <th>Obriši:</th>
                         <th>Izmeni:</th>
-                    </tr>
+                        </c:if>
+                        <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                        <th>Dodaj:</th>
+                        </c:if>
+                        </tr>
                     
                 </thead>
                 <c:forEach items="${proizvodiLista}" var="proizvodi">
@@ -172,9 +199,14 @@
                         <td>${proizvodi.zaauto}</td>
                         <td>${proizvodi.cena}</td>
                         <td>${proizvodi.proizvodnja}</td>
+                        <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                         <td><a href="<c:url value='/obrisiproizvod/${proizvodi.id_proizvod}' />"><span class="glyphicon glyphicon-remove"></span></a></td>
                         <td><a href="<c:url value='/editproizvod/${proizvodi.id_proizvod}' />"><span class="glyphicon glyphicon-edit"></span></a></td>
-			<td>
+                        </c:if>
+                        <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                        <td><a href="<c:url value='/naruciProizvod/${proizvodi.id_proizvod}' />"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+                        </c:if>
+                        <td>
 			</td>
 		</tr>
 

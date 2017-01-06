@@ -13,23 +13,25 @@ import com.it355.hibernate.entity.ProizvodiTip;
 import com.it355.hibernate.DAO.HibernateDAO;
 import com.it355.hibernate.entity.Forum;
 import com.it355.hibernate.entity.Kontakt;
+import com.it355.hibernate.entity.Korpa;
 import com.it355.hibernate.entity.Odgovori;
 import com.it355.hibernate.entity.Proizvodi;
+import com.it355.hibernate.entity.User;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -149,6 +151,9 @@ public class HibernateController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             model.addAttribute("username", userDetail.getUsername());
+            
+     
+           
         }
         model.addAttribute("komentariLista", hibernateDAO.getKomentari());
         model.addAttribute("odgovoriLista", hibernateDAO.getOdgovori());
@@ -176,7 +181,7 @@ public class HibernateController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             model.addAttribute("username", userDetail.getUsername());
-           
+            
         }
       
         
@@ -198,5 +203,137 @@ public class HibernateController {
        model.setViewName("odgovori");
         return model;
     }
+     
+     
+     @RequestMapping(value = "/naruciProizvod/{id}", method = RequestMethod.GET)
+    public String naruciProizvod(@PathVariable("id") int id, Model model) {
+         Proizvodi produc = hibernateDAO.getProizvodById(id);
+         
+         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addAttribute("username", userDetail.getUsername());
+           
+        }
+        model.addAttribute("korpa",produc);
+        
+        
+        return "naruciProizvod";
+    }
     
+     @RequestMapping(value = "/naruciProizvod/{id}", method = RequestMethod.POST)
+     public ModelAndView naruciProizvod(@ModelAttribute("korpa") Korpa p, ModelAndView model) {
+         
+         p = hibernateDAO.dodajUKorpu(p);
+         
+         model.addObject("korpa" , p);
+        
+       model.setViewName("naruciProizvod");
+        return model;
+    }
+     
+     
+     @RequestMapping(value = "/mojakorpa", method = RequestMethod.GET)
+    public String mojaKorpa(Model model, Authentication aut) {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            model.addAttribute("username", userDetail.getUsername());
+        }
+       
+        model.addAttribute("mojaKorpa", hibernateDAO.getMojaKorpa());
+      // model.addAttribute("role" , aut.getAuthorities()); getRole ulogovanog korisnika
+      
+        model.addAttribute("kor" , new Korpa());
+        
+      
+        return "mojaKorpa";
+    }
+    
+    
+     @RequestMapping(value = "/obrisiIzKorpe/{id}", method = RequestMethod.GET)
+    public String obrisiIzKorpe(@PathVariable("id") int id, HttpServletRequest request) {
+        System.out.println("Fetching & Deleting product with id " + id);
+        Korpa produc = hibernateDAO.getById(id);
+        if (produc == null) {
+            System.out.println("Unable to delete. Product with id " + id + " not found");
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer;
+        }
+
+        hibernateDAO.obrisiIzKorpe(produc);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+ 
+}    
+      @RequestMapping(value = "/allnarudzbine", method = RequestMethod.GET)
+    public String narudzbine(Model model) {
+        
+       
+        model.addAttribute("narudzbine", hibernateDAO.getMojaKorpa());
+       
+        model.addAttribute("nar" , new Korpa());
+        
+      
+        
+        return "sveNarudzbine";
+    }
+    
+    @RequestMapping(value = "/editKorpa/{id}", method = RequestMethod.GET)
+    public String editKorpa(@PathVariable("id") int id, Model model) {
+         Korpa produc = hibernateDAO.getById(id);
+         
+        model.addAttribute("id_proizvod" , hibernateDAO.getProizvodi());
+        model.addAttribute("editNarudzbina",produc);
+       
+        
+        return "editKorpa";
+    }
+    
+    @RequestMapping(value = "/editKorpa/{id}", method = RequestMethod.POST)
+     public ModelAndView editKorpa(@ModelAttribute("editNarudzbina") Korpa p, ModelAndView model) {
+         
+         p = hibernateDAO.dodajUKorpu(p);
+         
+         model.addObject("editNarudzbina" , p);
+        
+       model.setViewName("editKorpa");
+        return model;
+    }
+
+     
+     @RequestMapping(value = {"/reg",}, method = RequestMethod.GET)
+    public String reg(Model model, Authentication authentication) {
+      
+      
+        model.addAttribute("regi", new User());
+        
+        
+        return "register";
+    }
+     
+    @RequestMapping(value = "/reg", method = RequestMethod.POST)
+     public ModelAndView reg(@ModelAttribute("regi") User p, ModelAndView model) {
+         
+      try {
+         
+         p = hibernateDAO.addUser(p);
+         model.addObject("successMsg", "Uspešno ste se registrovali! Prijavite se za nastavak");
+      }
+      
+      catch (RuntimeException r){
+          r.printStackTrace();
+          model.addObject("successMsg", "Username je zauzet!");
+      }
+       
+         
+         model.addObject("regi" , p);
+         
+       model.setViewName("register");
+        return model;
+    }
+     
+     
+     
 }

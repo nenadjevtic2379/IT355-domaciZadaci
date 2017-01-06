@@ -8,15 +8,22 @@ package com.it355.hibernate.impl;
 import com.it355.hibernate.DAO.HibernateDAO;
 import com.it355.hibernate.entity.Forum;
 import com.it355.hibernate.entity.Kontakt;
+import com.it355.hibernate.entity.Korpa;
+
 import com.it355.hibernate.entity.Odgovori;
 import com.it355.hibernate.entity.Proizvodi;
 import com.it355.hibernate.entity.ProizvodiTip;
+import com.it355.hibernate.entity.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -161,5 +168,87 @@ public class HibernateDAOImpl implements HibernateDAO {
         
         return odgovori;
     }
+
+    @Override
+    @Transactional
+    public void naruciProizvod(Proizvodi p) {
+        getSession().saveOrUpdate(p);
+    }
+
+    @Override
+    @Transactional
+    public Korpa dodajUKorpu(Korpa k) {
+        return (Korpa) getSession().merge(k);
+    }
+
+    @Override
+    @Transactional
+    public List<Korpa> getMojaKorpa() {
+        List<Korpa> korpa = (List<Korpa>) getSession().createCriteria(Korpa.class).list();
+        return korpa;
+    }
+
+    @Override
+    @Transactional
+    public void obrisiIzKorpe(Korpa k) {
+           getSession().delete(k);
+    }
+
+    @Override
+    @Transactional
+    public Korpa getById(int id) {
+         Korpa k = (Korpa) getSession().createCriteria(Korpa.class).add(Restrictions.eq("id", id)).uniqueResult();
+         
+         return k;
+    }
+    
+   @Override
+    @Transactional
+    public void editKorpa(Korpa k) {
+        getSession().saveOrUpdate(k);
+    }
+
+    @Override
+    @Transactional
+    public User addUser(User u) {
+
+        
+        Query query = getSession().             
+    createQuery("from User u where u.username = :key"); //provera da li username postoji
+        query.setString("key", u.getUsername());
+        
+           if (query.uniqueResult() == null) {
+        
+        return (User) getSession().merge(u);
+       
+    } 
+           else {
+                throw new RuntimeException();
+      
+               }
+            }
+    
+            
+    
+    @Override
+    @Transactional
+    public List<User> getUser() {
+         List<User> user = (List<User>) getSession().createCriteria(User.class).list();
+         
+         return user;
+    }
+
+    @Override
+    public void obrisiKomentar(Forum f) {
+        getSession().delete(f);
+    }
+
+    @Override
+    public ProizvodiTip addTip(ProizvodiTip pt) {
+        return (ProizvodiTip) getSession().merge(pt);
+    }
+
+    
+
     
 }

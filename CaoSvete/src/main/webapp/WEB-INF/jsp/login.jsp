@@ -87,12 +87,28 @@
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./faq/">FAQ</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./contact/">Contact</a></li> -->
+                               <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./proizvodi">Proizvodi</a></li>
+                                 </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./sviTipoviHib">Tipovi</a></li>
+                                
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./forum">Forum</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./login">LogIn</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./allnarudzbine">Narudžbine</a></li>
+                                </c:if>
+                                
+                                <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./mojakorpa"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                                </c:if>
+                              <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./reg"><span class="glyphicon glyphicon-user"></span></a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./login"><span class="glyphicon glyphicon-log-in"></span></a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -109,7 +125,7 @@
         <div class="parallax-window" data-parallax="scroll" data-image-src="<c:url value="/resources/img/1920x1080/01.jpg" /> ">
             <div class="parallax-content container">
                 <h1 class="carousel-title">Prijavi se</h1>
-                <p>Nemaš nalog? Lako i brzo ga napravi i pristupi najvećoj kolekciji auto-delova
+                <p>Imaš nalog? Lako i brzo pristupi najvećoj kolekciji auto-delova
                     u Srbiji.</p>
             </div>
         </div>
@@ -118,55 +134,13 @@
         <div class="form">
 
             
-            <ul class="tab-group">
-                <li class="tab active"><a href="#signup">Sign Up</a></li>
-                <li class="tab"><a href="#login">Log In</a></li>
-            </ul>
+           
 
             <div class="tab-content">
                 <div id="signup">   
-                    <h3> Sign Up for Free</h3>
+                    <h3>Prijavi se</h3>
 
-                    <form action="/" method="post">
-
-                        <div class="top-row">
-                            <div class="field-wrap">
-                                <label>
-                                    First Name<span class="req">*</span>
-                                </label>
-                                <input type="text" required autocomplete="off" />
-                            </div>
-
-                            <div class="field-wrap">
-                                <label>
-                                    Last Name<span class="req">*</span>
-                                </label>
-                                <input type="text"required autocomplete="off"/>
-                            </div>
-                        </div>
-
-                        <div class="field-wrap">
-                            <label>
-                                Email Address<span class="req">*</span>
-                            </label>
-                            <input type="email"required autocomplete="off"/>
-                        </div>
-
-                        <div class="field-wrap">
-                            <label>
-                                Set A Password<span class="req">*</span>
-                            </label>
-                            <input type="password"required autocomplete="off"/>
-                        </div>
-
-                        <button type="submit" class="button button-block"/>Get Started</button>
-
-                    </form>
-
-                </div>
-
-                <div id="login">   
-                    <h1>Welcome Back!</h1>
+                    <h1>Dobrodošli!</h1>
 
                    
                     <c:if test="${not empty error}">
@@ -194,7 +168,7 @@
                             <input type="password"required autocomplete="off" name="password"/>
                         </div>
 
-                        <p class="forgot"><a href="#">Forgot Password?</a></p>
+                       
 
                         <button class="button button-block" name="submit"/>Log In</button>
                         <input type="hidden" name="${_csrf.parameterName}"
@@ -202,6 +176,11 @@
 
                     </form>
 
+
+                </div>
+
+                <div id="login">   
+                    
                 </div>
 
             </div><!-- tab-content -->

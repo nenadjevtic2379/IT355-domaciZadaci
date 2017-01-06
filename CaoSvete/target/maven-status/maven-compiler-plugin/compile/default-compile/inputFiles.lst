@@ -2,6 +2,7 @@ C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibern
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\DAO\HibernateDAO.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\impl\HibernateDAOImpl.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\DAO\impl\ProizvodDAOImpl.java
+C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\entity\User.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\DAO\ListaDAO.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\service\TipProizvodaService.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\entity\ProizvodiTip.java
@@ -14,8 +15,10 @@ C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\servic
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\DAO\impl\ListaDAOImpl.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\DAO\ProizvodDAO.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\entity\Kontakt.java
+C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\converter\IntegerToCategory\IntegerToProduct.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\service\impl\TipProizvodaServiceImpl.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\converter\IntegerToCategory\IntegerToCategory.java
+C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\entity\Korpa.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\caosvete\HibernateController.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\DAO\TipDAO.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\mapper\tipProizvodaMapper.java
@@ -23,5 +26,7 @@ C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\mapper
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\service\impl\ListaServiceImpl.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\service\ListaService.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\model\tipProizvoda.java
+C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\converter\IntegerToCategory\IntegerToComment.java
+C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\hibernate\entity\Odgovori.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\caosvete\ZdravoController.java
 C:\Users\Korisnik\Desktop\New folder (2)\CaoSvete\src\main\java\com\it355\service\impl\ProizvodServiceImpl.java

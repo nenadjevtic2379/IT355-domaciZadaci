@@ -192,7 +192,7 @@
 
 
 
-                <form:form  method="POST" modelAttribute="forum">
+                <form:form onsubmit="setTimeout(function () { window.location.reload(); }, 30)" method="POST" modelAttribute="forum">
 
                    
                 <form:input type="hidden" id="id"  path="id"  />

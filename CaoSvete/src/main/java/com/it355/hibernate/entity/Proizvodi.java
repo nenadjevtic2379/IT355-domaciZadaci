@@ -39,6 +39,9 @@ public class Proizvodi {
     @Column(name = "vrsta")
     private String vrsta;
     
+     @Column(name = "username")
+    private String username;
+    
     @ManyToOne
     @JoinColumn(name = "id_tip" , referencedColumnName = "id")
     private ProizvodiTip tip;
@@ -91,14 +94,19 @@ public class Proizvodi {
         this.tip = tip;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
-        return "Proizvodi{" + "id_proizvod=" + id_proizvod + ", cena=" + cena + ", proizvodnja=" + proizvodnja + ", zaauto=" + zaauto + ", vrsta=" + vrsta + ", tip=" + tip + '}';
+        return "Proizvodi{" + "id_proizvod=" + id_proizvod + ", cena=" + cena + ", proizvodnja=" + proizvodnja + ", zaauto=" + zaauto + ", vrsta=" + vrsta + ", username=" + username + ", tip=" + tip + '}';
     }
     
-   
- 
-
         
 
 }
