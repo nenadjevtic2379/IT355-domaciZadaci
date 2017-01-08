@@ -151,18 +151,46 @@
                     <div class="collapse navbar-collapse nav-collapse">
                         <div class="menu-container">
                             <ul class="navbar-nav navbar-nav-right">
+                                 <c:if test="${pageContext.request.userPrincipal.name != null}">
+		
+                    <li class="nav-item"><a class="nav-item-child nav-item"><span class="glyphicon glyphicon-user ">${pageContext.request.userPrincipal.name}</span></a></li>			 
+		
+	                  </c:if>
+                                
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./">Početna</a></li>
                                 <!--      <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./about/">About</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./faq/">FAQ</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./contact/">Contact</a></li>  -->
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./proizvodi">Proizvodi</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./sviTipoviHib">Tipovi</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addtip">Dodaj tip</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./addProizvod">Dodaj proizvod</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="./forum">Forum</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./login">LogIn</a></li>
+                               
+                                 <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover"  href="<c:url value="/proizvodi"/>">Proizvodi</a></li>
+                                 </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/sviTipoviHib"/>">Tipovi</a></li>
+                                
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/addtip"/>">Dodaj tip</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/addProizvod"/>">Dodaj proizvod</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/forum"/>">Forum</a></li>
+                               </c:if>
+                                <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/allnarudzbine"/>">Narudžbine</a></li>
+                                </c:if>
+                                
+                                <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/mojakorpa"/>"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                                </c:if>
+                               <c:if test="${!pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
+                             <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./reg"><span class="glyphicon glyphicon-user"></span></a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover " href="./login"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                                </c:if>
+
+                                <c:if test="${pageContext.request.isUserInRole('user') || pageContext.request.isUserInRole('admin')}">
+        <li class="nav-item"><a href="javascript:formSubmit()" class="nav-item-child nav-item-hover"><span class="glyphicon glyphicon-log-out"></span></a></li>                        
+                                </c:if>
 
                             </ul>
                         </div>
@@ -186,6 +214,18 @@
 
 
         <div class="form">
+            
+            
+            <c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
 
             <p> Odgovori na komentar: <p>
 
