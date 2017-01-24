@@ -239,13 +239,23 @@ public class HibernateDAOImpl implements HibernateDAO {
     }
 
     @Override
+    @Transactional
     public void obrisiKomentar(Forum f) {
         getSession().delete(f);
     }
 
     @Override
+    @Transactional
     public ProizvodiTip addTip(ProizvodiTip pt) {
         return (ProizvodiTip) getSession().merge(pt);
+    }
+
+    @Override
+    @Transactional
+    public List<Kontakt> getPoruke() {
+        List<Kontakt> con = (List<Kontakt>) getSession().createCriteria(Kontakt.class).list();
+        
+        return con;
     }
 
     

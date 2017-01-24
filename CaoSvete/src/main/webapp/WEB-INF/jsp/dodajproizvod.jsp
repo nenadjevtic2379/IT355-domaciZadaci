@@ -103,7 +103,9 @@
 		
 	                  </c:if>
                                 
+                               
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./">Početna</a></li>
+                                 
                                 <!--      <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./about/">About</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
@@ -116,14 +118,16 @@
                                 <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/sviTipoviHib"/>">Tipovi</a></li>
                                 
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/addtip"/>">Dodaj tip</a></li>
-                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="<c:url value="/addProizvod"/>">Dodaj proizvod</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/addtip"/>">DodajT</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover active" href="<c:url value="/addProizvod"/>">DodajP</a></li>
                                </c:if>
                                 <c:if test="${pageContext.request.isUserInRole('admin') || pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/forum"/>">Forum</a></li>
                                </c:if>
                                 <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/allnarudzbine"/>">Narudžbine</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/info"/>">Korisnici</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/poruke"/>">Poruke</a></li>
                                 </c:if>
                                 
                                 <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">

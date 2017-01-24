@@ -79,7 +79,9 @@
 		
 	                  </c:if>
                                 
+                                
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./">Početna</a></li>
+                                 
                                 <!--      <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./pricing/">Pricing</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./about/">About</a></li>
                                       <li class="nav-item"><a class="nav-item-child nav-item-hover" href="./products/">Products</a></li>
@@ -100,6 +102,8 @@
                                </c:if>
                                 <c:if test="${pageContext.request.isUserInRole('admin') && !pageContext.request.isUserInRole('user')}">
                                 <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/allnarudzbine"/>">Narudžbine</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/info"/>">Korisnici</a></li>
+                                <li class="nav-item"><a class="nav-item-child nav-item-hover" href="<c:url value="/poruke"/>">Poruke</a></li>
                                 </c:if>
                                 
                                 <c:if test="${pageContext.request.isUserInRole('user') && !pageContext.request.isUserInRole('admin')}">
@@ -214,7 +218,7 @@
                             <form:input path="role"  id="role" value="user" type="hidden" />
                         </div>
                         
-                        <button class="button button-block" name="submit"/>Log In</button>
+                        <button class="button button-block" name="submit"/>Register</button>
                         
                           
                 </form:form>

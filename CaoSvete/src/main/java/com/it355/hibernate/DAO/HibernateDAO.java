@@ -34,6 +34,7 @@ public interface HibernateDAO {
     public void naruciProizvod(Proizvodi p);
     
     public Kontakt dodajKontakt(Kontakt k);
+    public List<Kontakt> getPoruke();
     
     public Forum dodajKomentar(Forum f);
     public List<Forum> getKomentari();

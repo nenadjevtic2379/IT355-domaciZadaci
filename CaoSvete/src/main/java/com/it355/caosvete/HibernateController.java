@@ -334,6 +334,22 @@ public class HibernateController {
         return model;
     }
      
+      @RequestMapping(value="/info", method=RequestMethod.GET)
+	public ModelAndView getKorisnici(ModelAndView model) {
+		model.addObject("usersLista" , hibernateDAO.getUser());
+                model.addObject("user", new User());
+                model.setViewName("korisnici");
+           
+            return model;
+	}
      
+      @RequestMapping(value="/poruke", method=RequestMethod.GET)
+	public ModelAndView getPoruke(ModelAndView model) {
+		model.addObject("porukeLista" , hibernateDAO.getPoruke());
+                model.addObject("poruke", new Kontakt());
+                model.setViewName("poruke");
+           
+            return model;
+	}
      
 }
